@@ -2,7 +2,20 @@ import { Hono } from 'hono'
 
 const app = new Hono()
 
-app.post('/api/v1/signup', (c) => {
+app.post('/api/v1/signup', async (c) => {
+
+  const prisma = new PrismaClinet({
+    datasourceUrl: c.env.DATABASE_URL,
+  });
+
+  const body = await c.req.json();
+
+  await prisma.user.create({
+    data: {
+      email: body.email,
+      password: body.password,
+    },
+  })
   return c.text('signup route')
 })
 
