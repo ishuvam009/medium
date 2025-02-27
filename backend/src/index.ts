@@ -1,15 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import { Hono } from 'hono'
+import { sign } from 'hono/jwt';
 
 interface Env{
   DATABASE_URL: string;
+  JWT_SECRET: string;
 }
 
 const app = new Hono<{Bindings:Env}>();
 
 app.post('/api/v1/signup', async (c) => {
-
-  console.log('DATABASE_URL:', c.env.DATABASE_URL);
 
   const prisma = new PrismaClient ({
     datasources: {
@@ -21,13 +21,18 @@ app.post('/api/v1/signup', async (c) => {
 
   const body = await c.req.json();
 
-  await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       email: body.email,
       password: body.password,
     },
   })
-  return c.text('signup route')
+
+  const token = sign({id: user.id, name: user.name, email: user.email}, c.env.JWT_SECRET);
+
+  return c.json({
+    jwt_token : token,
+  })
 })
 
 app.post('/api/v1/signin',(c) => {
