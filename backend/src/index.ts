@@ -1,11 +1,22 @@
+import { PrismaClient } from '@prisma/client';
 import { Hono } from 'hono'
 
-const app = new Hono()
+interface Env{
+  DATABASE_URL: string;
+}
+
+const app = new Hono<{Bindings:Env}>();
 
 app.post('/api/v1/signup', async (c) => {
 
-  const prisma = new PrismaClinet({
-    datasourceUrl: c.env.DATABASE_URL,
+  console.log('DATABASE_URL:', c.env.DATABASE_URL);
+
+  const prisma = new PrismaClient ({
+    datasources: {
+      db:{
+        url: c.env.DATABASE_URL,
+      },
+    },
   });
 
   const body = await c.req.json();
