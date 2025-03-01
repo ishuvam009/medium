@@ -50,9 +50,26 @@ app.post('/api/v1/signup', async (c) => {
   }
 });
 
-app.post('/api/v1/signin',(c) => {
+
+
+app.post('/api/v1/signin',async (c) => {
+
+  const prisma =  new PrismaClient({
+    datasources: c.env?.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const body = await c.req.json();
+  const user = awair prisma.user.findUnique({
+    where: {
+      email: body.email,
+      password: body.password,
+    }
+  })
+
   return c.text('signin route')
 })
+
+
 
 app.get('/api/v1/blog/:id',(c) => {
   const id = c.req.param('id');
