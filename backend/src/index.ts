@@ -59,7 +59,7 @@ app.post('/api/v1/signin',async (c) => {
   }).$extends(withAccelerate());
 
   const body = await c.req.json();
-  const user = awair prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       email: body.email,
       password: body.password,
