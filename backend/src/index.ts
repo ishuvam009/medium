@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { Hono } from 'hono';
-import { sign } from 'hono/jwt';
+import { sign,verify } from 'hono/jwt';
 
 interface Env {
   DATABASE_URL: string;
@@ -9,6 +9,23 @@ interface Env {
 }
 
 const app = new Hono<{Bindings: Env}>();
+
+app.use('api/v1/blog/*', async (c,next) =>{
+  //get header
+  //verify the header
+  //if the g=header is correct then proceed
+  //if not then return a 403 status code
+
+  const header = c.req.header("authoriation") || "";
+  const response = await verify(header, c.env.JWT_SECRET);
+  if(response.id){
+    next();
+  }
+    else{
+      c.status(403)
+      return c.json({error:"unauthorized"})
+    }
+})
 
 app.post('/api/v1/signup', async (c) => {
   try {
