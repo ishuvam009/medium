@@ -2,6 +2,8 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { Hono } from 'hono';
 import { sign,verify } from 'hono/jwt';
+import { userRouter } from './routes/user';
+import { blogRouter } from './routes/blog';
 
 interface Env {
   DATABASE_URL: string;
@@ -9,6 +11,12 @@ interface Env {
 }
 
 const app = new Hono<{Bindings: Env}>();
+
+
+  //addrd routing
+
+  app.route("api/v1/user", userRouter);
+  app.route("api/v1/blog", blogRouter);
 
 app.use('api/v1/blog/*', async (c,next) =>{
   //get header
@@ -41,6 +49,7 @@ app.post('/api/v1/signup', async (c) => {
     
     const body = await c.req.json();
     
+    //zod and hased password
     const user = await prisma.user.create({
       data: {
         email: body.email,
