@@ -16,7 +16,7 @@ app.use('api/v1/blog/*', async (c,next) =>{
   //if the g=header is correct then proceed
   //if not then return a 403 status code
 
-  const header = c.req.header("authoriation") || "";
+  const header = c.req.header("authorization") || "";
   const response = await verify(header, c.env.JWT_SECRET);
   if(response.id){
     next();
@@ -72,7 +72,11 @@ app.post('/api/v1/signup', async (c) => {
 app.post('/api/v1/signin',async (c) => {
 
   const prisma =  new PrismaClient({
-    datasources: c.env?.DATABASE_URL,
+    datasources: {
+      db:{
+        url: c.env?.DATABASE_URL,
+      }
+    }
   }).$extends(withAccelerate());
 
   const body = await c.req.json();
