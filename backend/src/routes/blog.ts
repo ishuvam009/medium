@@ -5,12 +5,12 @@ import { PrismaClient } from "@prisma/client/edge";
 
 
 export const blogRouter = new Hono<{
-    Bindings: {
+    Bindings:{
         DATABASE_URL: string,
         JWT_SECRET: string,
     },
-    Variables:{
-        userId: string
+    Variables: {
+        userId: string,
     }
 }>();
 
@@ -19,9 +19,9 @@ blogRouter.use('/*', async (c,next) =>{
     //get header
     //verify the header
     //if the g=header is correct then proceed
-    //if not then return a 403 status code
+    //if not then return a 401 status code
   
-    const header = c.req.header("authorizarion") || "";
+    const header = c.req.header("authorization") || "";
     const user = await verify(header,c.env.JWT_SECRET)
 
     if(user && typeof user.id === "string"){
@@ -39,7 +39,7 @@ blogRouter.use('/*', async (c,next) =>{
 
 //blogs routes
 
-blogRouter.post('/', async (c) =>{
+blogRouter.post('/post', async (c) =>{
 
     const body = await c.req.json();
     const userId = c.get("userId");
@@ -58,9 +58,9 @@ blogRouter.post('/', async (c) =>{
     return c.json({
         id: blog.id,
     })
-})
+});
   
-blogRouter.put('/',async (c) =>{
+blogRouter.put('/update',async (c) =>{
 
     const body = await c.req.json();
     const prisma = new PrismaClient({
@@ -80,9 +80,9 @@ blogRouter.put('/',async (c) =>{
     return c.json({
         id: blog.id,
     })
-})
+});
 
-blogRouter.get('/',async (c)=>{
+blogRouter.get('/mypost',async (c)=>{
 
     const body = await c.req.json();
     const prisma = new PrismaClient({
@@ -104,7 +104,7 @@ blogRouter.get('/',async (c)=>{
             message: "Error in fetching the blog post",
         })
     }
-})
+});
 
 
 //Implement a pagination here.
@@ -121,4 +121,4 @@ blogRouter.get('/bulk', async (c)=>{
     return c.json({
         blog,
     })
-})
+});
