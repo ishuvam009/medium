@@ -12,8 +12,8 @@ const app = new Hono<{Bindings: Env}>();
 
   //addrd routing
 
-  app.route("api/v1/user", userRouter);
-  app.route("api/v1/blog", blogRouter);
+  app.route("/api/v1/user", userRouter);
+  app.route("/api/v1/blog", blogRouter);
 
 
 
