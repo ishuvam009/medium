@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { verify,sign } from "hono/jwt";
+import { userValidation } from "../zod/zod";
 
 interface Env{
     DATABASE_URL: string,
@@ -24,6 +25,15 @@ userRouter.post('/signup', async (c) => {
       }).$extends(withAccelerate());
       
       const body = await c.req.json();
+
+      const { success } = userValidation.safeParse(body);
+
+      if(!success){
+        c.status(411);
+        return c.json({
+          message: "Inputs are not correct."
+        })
+      }
       
       //zod and hased password
       const user = await prisma.user.create({

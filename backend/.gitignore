@@ -14,8 +14,7 @@ dist/
 # deps
 node_modules/
 .wrangler
-.wrangler.jsonc  # Add this line to ignore wrangler.json
-.wrangler.jsonc
+wrangler.jsonc
 
 # env
 .env
