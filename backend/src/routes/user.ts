@@ -36,7 +36,7 @@ userRouter.post("/signup", async (c) => {
     //Hased password
     const user = await prisma.user.create({
       data: {
-        email: body.username,
+        email: body.email,
         password: body.password,
         name: body.name,
       },
@@ -99,13 +99,14 @@ userRouter.post("/signin", async (c) => {
     }
 
     const token = await sign(
-      { id: user.id, username: user.email, password: user.password },
+      { id: user.id, username: user.email, name: user.name},
       c.env.JWT_SECRET
     );
 
     return c.json({
       jwt_token: token,
     });
+
   } catch (error) {
     console.error("Error Occured", error);
     
