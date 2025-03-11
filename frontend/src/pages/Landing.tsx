@@ -33,7 +33,7 @@ export const Landing = () => {
             </Link>
           </div>
         </div>
-        <div className="flex min-h-screen items-center pl-10 pt-10 border-b">
+        <div className="flex min-h-screen items-center pt-16 pl-10 border-b">
           <div className="w-[62%]">
             <p className="text-9xl font-serif mb-6">
               Human <br /> stories & ideas
