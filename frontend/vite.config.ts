@@ -8,4 +8,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+
+  //change on prod
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    cors: {
+      origin: '*',
+    }
+  }
 })
