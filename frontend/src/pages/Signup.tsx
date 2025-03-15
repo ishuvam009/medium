@@ -12,7 +12,7 @@ export const Signup = () => {
     name:""
   });
 
-  const [showAlert, setAlertState] = useState<boolean>(false);
+  const [alert, setAlert] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const {id, value} = e.target;
@@ -25,17 +25,16 @@ export const Signup = () => {
       e.preventDefault();
       
       if(!formData.email || !formData.name || !formData.password){
-        alert("Please fill all the fields.");
+        setAlert(true);
         return;
       }
+
+      setAlert(false); //re setting it.
+
       try {
-        const response = await axios.post("",formData);
+        const response = await axios.post("/localhost:3000",formData);
         console.log("The data is: ", response.data);
       } catch (error) {
-        //edit here
-        {showAlert && (
-        <Alert message="Please fill all the texts."/>
-      )}
         console.log("Error: ",error);
       }
     }
@@ -43,6 +42,7 @@ export const Signup = () => {
 
   return (
     <>
+    {alert && <Alert message="Please fill all the fields."/>}
       <div className="h-full flex">
         <div className="w-full lg:w-1/2 h-screen bg-white text-center md:mt-10 xl:mt-20 2xl:mt-30">
           <p className="text-4xl font-bold">Create an account</p>
