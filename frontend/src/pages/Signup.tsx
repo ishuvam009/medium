@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserSinUp } from "@zedeye/zod-medium-common";
 import axios from "axios";
+import { Alert } from "../assets/Alert";
 
 export const Signup = () => {
 
@@ -10,6 +11,8 @@ export const Signup = () => {
     password:"",
     name:""
   });
+
+  const [showAlert, setAlertState] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const {id, value} = e.target;
@@ -21,10 +24,18 @@ export const Signup = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       
+      if(!formData.email || !formData.name || !formData.password){
+        alert("Please fill all the fields.");
+        return;
+      }
       try {
         const response = await axios.post("",formData);
         console.log("The data is: ", response.data);
       } catch (error) {
+        //edit here
+        {showAlert && (
+        <Alert message="Please fill all the texts."/>
+      )}
         console.log("Error: ",error);
       }
     }
