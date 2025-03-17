@@ -3,9 +3,9 @@ import { Landing } from "./pages/Landing";
 import { Blog } from "./pages/Blog";
 import { Signup } from "./pages/Signup";
 import { Signin } from "./pages/Signin";
-import { Header } from "./components/Header";
 import { Profile } from "./pages/Profile"
 import { WriteBlog } from "./pages/WriteBlog";
+import { Article } from "./components/Article";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<Landing />} />
-          <Route path="/alert" element={<Header />} />
+          <Route path="/article" element={<Article />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog" element={<Blog />} />
