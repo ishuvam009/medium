@@ -27,7 +27,7 @@ export const Signin = () => {
     <>
       <div className="h-full flex">
         <div className="w-full lg:w-1/2 h-screen bg-white text-center md:mt-10 xl:mt-20 2xl:mt-30">
-          <p className="text-4xl font-bold">Create an account</p>
+          <p className="text-4xl font-bold">LogIn to your account</p>
           <p className="text-slate-500 mt-2 lg:mt-4 xl:mt-8">
             Don't have an account?{" "}
             <Link

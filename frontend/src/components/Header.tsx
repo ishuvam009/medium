@@ -1,5 +1,6 @@
 import { CiSearch } from "react-icons/ci";
 import { LiaEditSolid } from "react-icons/lia";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -7,7 +8,9 @@ export const Header = () => {
       <div className="flex justify-between mb-6">
         <div className="flex p-4 items-center justify-between gap-x-4">
           <div className="">
-            <p className="text-2xl font-semibold font-serif">Medium</p>
+            <Link to={"/"}>
+              <p className="text-2xl font-semibold font-serif">Medium</p>
+            </Link>
           </div>
           <div>
             <CiSearch />
@@ -20,14 +23,20 @@ export const Header = () => {
             />
           </div>
         </div>
-        <div className="flex justify-between items-center p-4 gap-x-4">
+        <div className="flex justify-between items-center p-4 gap-x-10 mr-10">
           <div className="flex justify-between gap-x-1 items-center ">
-            <a className="flex justify-between items-center" href="">
+            <Link to="/new-story" className="flex justify-between items-center">
               <LiaEditSolid />
               Write
-            </a>
+            </Link>
           </div>
-          <div>Profile</div>
+          <div>
+            <Link to="/profile">
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-slate-400 text-white">
+                S
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </>

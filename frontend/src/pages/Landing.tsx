@@ -20,10 +20,10 @@ export const Landing = () => {
             <Link to={"/"} className="!text-black sm:block hidden">
               Membership
             </Link>
-            <Link to={"/"} className="!text-black lg:block hidden">
+            <Link to={"/signup"} className="!text-black lg:block hidden">
               Write
             </Link>
-            <Link to={"/"} className="!text-black sm:block hidden">
+            <Link to={"/signin"} className="!text-black sm:block hidden">
               Sign in
             </Link>
             <Link to={"/signup"}>
