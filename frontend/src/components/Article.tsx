@@ -1,10 +1,11 @@
 import { Header } from "./Header";
+import aiImage from "../assets/enterprise_ai-responsible_ai-f.png";
 
 export const Article = () => {
   return (
     <>
       <Header />
-      <div className="px-70">
+      <div className="px-70 border-t-2 border-[#F2F2F2]">
         <div>
           <div className="py-4">
             <p className="font-bold text-3xl">
@@ -30,7 +31,7 @@ export const Article = () => {
         <div className="mb-6">
           <p className="text-slate-500">18 March 2025</p>
         </div>
-        <div className="flex flex-col gap-y-8">
+        <div className="flex flex-col gap-y-8 mb-30">
           <p>
             Artificial general intelligence (AGI) is the representation of
             generalized human cognitive abilities in software so that, faced
@@ -52,7 +53,15 @@ export const Article = () => {
             supercomputer, expert systems and self-driving cars are examples of
             narrow AI.
           </p>
-          <p className="font-bold text-2xl">What can artificial general intelligence do?</p>
+          <div className="flex justify-center content-center bg-gray-300 p-6 rounded-lg shadow-xl">
+            <iframe
+              className="h-84 w-149 "
+              src="https://www.youtube.com/embed/WP6z_X5d-Rw?si=_l-5jO_etiRuoCfm"
+            ></iframe>
+          </div>
+          <p className="font-bold text-2xl">
+            What can artificial general intelligence do?
+          </p>
           <p>
             AGI in computer science is an intelligent system with comprehensive
             or complete knowledge and cognitive computing capabilities. As of
@@ -69,8 +78,85 @@ export const Article = () => {
             perform many tasks but not at the level of success that would
             categorize them as human or general intelligence.
           </p>
-          <p></p>
-          <p></p>
+          <p>
+            An AGI system should have the following abilities and understanding:
+          </p>
+          <ul className="list-disc list-inside">
+            <li>Abstract thinking.</li>
+            <li>Background knowledge.</li>
+            <li>Common sense.</li>
+            <li>Cause and effect.</li>
+          </ul>
+          <p>
+            Practical examples of AGI capabilities include the following five:
+          </p>
+          <ul className="list-disc list-inside">
+            <li>
+              Creativity. An AGI system would theoretically be able to read and
+              comprehend human-generated code and improve it.
+            </li>
+            <li>
+              Sensory perception. AGI would excel at color recognition, which is
+              a subjective kind of perception. It would also be able to perceive
+              depth and three dimensions in static images.
+            </li>
+            <li>
+              Fine motor skills. An example of this includes grabbing a set of
+              keys from a pocket, which involves a level of imaginative
+              perception.
+            </li>
+            <li>
+              Natural language understanding (NLU). The meaning of human
+              language is highly context-dependent. AGI systems would possess a
+              level of intuition that would enable NLU.
+            </li>
+            <li>
+              Navigation. The existing Global Positioning System (GPS) can
+              pinpoint a geographic location. Once fully developed, AGI would be
+              able to project movement through physical spaces better than
+              existing systems.
+            </li>
+          </ul>
+          <p>
+            AI researchers also anticipate that AGI systems will possess
+            higher-level capabilities, such as being able to do the following:
+          </p>
+          <ul className="list-disc list-inside">
+            <li>Handle various types of learning and learning algorithms.</li>
+            <li>Create fixed structures for all tasks.</li>
+            <li>Understand symbol systems.</li>
+            <li>Use different kinds of knowledge.</li>
+            <li>Understand belief systems.</li>
+            <li>
+              Engage in metacognition and make use of metacognitive knowledge.
+            </li>
+          </ul>
+          <div className="flex justify-center p-4">
+            <img className="h-130 w-150" src={aiImage} alt="AI" />
+          </div>
+          <p className="font-bold text-xl">AGI vs. AI: What's the difference?</p>
+          <p>
+            Existing artificial intelligence capabilities are referred to as
+            narrow AI when compared with artificial general intelligence. AGI is
+            theoretical, whereas narrow AI is in practical use today.
+          </p>
+
+          <p>
+            AGI should theoretically be able to perform any task that a human
+            can and exhibit a range of intelligence in different areas without
+            human intervention. Its performance should be as good as or better
+            than humans at solving problems in most areas.
+          </p>
+
+          <p>
+            In contrast, weak AI excels at completing specific tasks or types of
+            problems. Many existing AI systems use a combination of machine
+            learning (ML), deep learning (a subset of machine learning),
+            reinforcement learning and natural language processing (NLP) for
+            self-improving and to solve specific types of problems. However,
+            these technologies do not approach the cumulative ability of the
+            human brain.
+          </p>
         </div>
       </div>
     </>
