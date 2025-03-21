@@ -1,9 +1,15 @@
-export const WriteBlog = () => {
+import { Header } from "../components/Header";
 
-    return(
-        <>
-        <p>Write the Blog</p>
-        <input type="text" placeholder="Write here."/>
-        </>
-    )
-}
+export const WriteBlog = () => {
+  return (
+    <>
+      <div>
+        <Header />
+        <div>
+          <p>Write the Blog</p>
+          <input type="text" placeholder="Write here." />
+        </div>
+      </div>
+    </>
+  );
+};
