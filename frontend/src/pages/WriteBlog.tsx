@@ -5,9 +5,9 @@ export const WriteBlog = () => {
     <>
       <div>
         <Header />
-        <div className="flex flex-col gap-y-4 item-center bg-amber-100">
+        <div className="flex flex-col gap-y-4 items-center bg-amber-100 p-8">
           <p className="text-2xl font-bold">Write the Blog</p>
-          <input type="text" placeholder="Write here." />
+          <input className="p-6 border bg-white" type="text" placeholder="Write here." />
         </div>
       </div>
     </>
