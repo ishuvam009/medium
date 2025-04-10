@@ -1,4 +1,4 @@
-import Img from "../assets/img.webp";
+import Img from "../assets/Img.webp";
 import { Link } from "react-router-dom";
 
 export const BlogPostCards = () => {
